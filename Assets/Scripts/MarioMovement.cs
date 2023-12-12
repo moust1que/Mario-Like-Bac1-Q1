@@ -14,7 +14,7 @@ public class MarioMovement : MonoBehaviour {
 	[SerializeField] private float m_gravity => -2.0f * m_maxJumpHeight / Mathf.Pow(m_maxJumpTime / 2.0f, 2);
 	private float m_inputAxis;
 
-	private bool m_grounded;
+	private bool m_grounded, m_hitLeft, m_hitRight, m_hitTop;
 	private bool m_jumping;
 
 	private void Awake() {
@@ -25,10 +25,17 @@ public class MarioMovement : MonoBehaviour {
 	private void Update() {
 		HandleHorizontalMovement();
 
-		m_grounded = m_rigidbody.Raycast(Vector3.down);
-		Debug.Log(m_grounded);
+        float verticalDistance = gameObject.transform.localScale.y / 2.0f + 0.5f;
+        float horizontalDistance = gameObject.transform.localScale.x / 2.0f;
+        float verticalRadius = gameObject.transform.localScale.y / 2.0f;
+        float horizontalRadius = gameObject.transform.localScale.x / 2.0f;
 
-		if(m_grounded)
+		m_grounded = m_rigidbody.Raycast(Vector3.down, verticalDistance, verticalRadius);
+        m_hitTop = m_rigidbody.Raycast(Vector3.up, verticalDistance, verticalRadius);
+        m_hitLeft = m_rigidbody.Raycast(Vector3.left, horizontalDistance, horizontalRadius);
+        m_hitRight = m_rigidbody.Raycast(Vector3.right, horizontalDistance, horizontalRadius);
+
+		if(m_grounded || m_hitTop)
 			HandleVerticalMovement();
 
 			ApplyGravity();
@@ -48,6 +55,10 @@ public class MarioMovement : MonoBehaviour {
 	private void HandleHorizontalMovement() {
 		m_inputAxis = Input.GetAxis("Horizontal");
 		m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_inputAxis * m_moveSpeed, m_moveSpeed * Time.deltaTime);
+
+        if(m_hitLeft && m_inputAxis < 0.0f || m_hitRight && m_inputAxis > 0.0f) {
+            m_velocity.x = 0;
+        }
 	}
 
 	private void HandleVerticalMovement() {
@@ -58,14 +69,18 @@ public class MarioMovement : MonoBehaviour {
 			m_velocity.y = m_jumpForce;
 			m_jumping = true;
 		}
+        if(m_jumping && m_hitTop)
+            m_velocity.y = 0.0f;
 	}
 
 	private void ApplyGravity() {
 		bool falling = m_velocity.y < 0.0f || !Input.GetButton("Jump");
 		float multiplier = falling ? 2.0f : 1.0f;
 	
-		m_velocity.y += m_gravity * multiplier * Time.deltaTime;
-		m_velocity.y = Mathf.Max(m_velocity.y, m_gravity / 2.0f);
+        if(gameObject.transform.position.y > 1.0f) {
+            m_velocity.y += m_gravity * multiplier * Time.deltaTime;
+            m_velocity.y = Mathf.Max(m_velocity.y, m_gravity / 2.0f);
+        }
 	}
 
 	// void OnDrawGizmos() {
