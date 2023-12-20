@@ -7,8 +7,8 @@ public class MarioMovement : MonoBehaviour {
 
 	private Vector3 m_velocity;
 	
-	[SerializeField] private float m_moveSpeed = 8.0f,
-								   m_maxJumpHeight = 4.0f,
+	[SerializeField] private float m_moveSpeed = 20.0f,
+								   m_maxJumpHeight = 4.5f,
 								   m_maxJumpTime = 1.0f;
 	[SerializeField] private float m_jumpForce => 2.0f * m_maxJumpHeight / (m_maxJumpTime / 2.0f);
 	[SerializeField] private float m_gravity => -2.0f * m_maxJumpHeight / Mathf.Pow(m_maxJumpTime / 2.0f, 2);
@@ -25,10 +25,15 @@ public class MarioMovement : MonoBehaviour {
 	private void Update() {
 		HandleHorizontalMovement();
 
-        float verticalDistance = gameObject.transform.localScale.y / 2.0f + 0.5f;
-        float horizontalDistance = gameObject.transform.localScale.x / 2.0f;
+		Vector3 downOrigin = new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2.0f, transform.position.z);
+		Vector3 upOrigin = new Vector3(transform.position.x, transform.position.y + transform.localScale.y / 2.0f, transform.position.z);
+		// Vector3 leftOrigin = new Vector3(transform.position.x - transform.localScale.x / 4.0f, transform.position.y, transform.position.z);
+		// Vector3 rightOrigin = new Vector3(transform.position.x + transform.localScale.x / 4.0f, transform.position.y, transform.position.z);
+		Vector3 horizontalOrigin = new(transform.position.x, transform.position.y, transform.position.z);
+        float verticalDistance = gameObject.transform.localScale.y / 2.0f;
+        float horizontalDistance = gameObject.transform.localScale.x / 4.0f;
         float verticalRadius = gameObject.transform.localScale.y / 2.0f;
-        float horizontalRadius = gameObject.transform.localScale.x / 2.0f;
+        float horizontalRadius = gameObject.transform.localScale.x / 4.0f;
 
 		m_grounded = m_rigidbody.Raycast(Vector3.down, verticalDistance, verticalRadius);
         m_hitTop = m_rigidbody.Raycast(Vector3.up, verticalDistance, verticalRadius);
@@ -53,11 +58,11 @@ public class MarioMovement : MonoBehaviour {
 	}
 
 	private void HandleHorizontalMovement() {
-		m_inputAxis = Input.GetAxis("Horizontal");
-		m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_inputAxis * m_moveSpeed, m_moveSpeed * Time.deltaTime);
+		m_inputAxis = Input.GetAxisRaw("Horizontal");
+		m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_inputAxis * m_moveSpeed / 2.0f, m_moveSpeed * Time.deltaTime);
 
         if(m_hitLeft && m_inputAxis < 0.0f || m_hitRight && m_inputAxis > 0.0f) {
-            m_velocity.x = 0;
+            m_velocity.x = 0.0f;
         }
 	}
 
@@ -81,10 +86,7 @@ public class MarioMovement : MonoBehaviour {
             m_velocity.y += m_gravity * multiplier * Time.deltaTime;
             m_velocity.y = Mathf.Max(m_velocity.y, m_gravity / 2.0f);
         }
+		if(m_grounded && !m_jumping)
+			m_velocity.y = 0.0f;
 	}
-
-	// void OnDrawGizmos() {
-	// 	Gizmos.color = Color.green;
-	// 	Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2.0f, transform.position.z), transform.localScale.y / 2.0f);
-	// }
 }
