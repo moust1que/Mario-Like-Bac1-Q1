@@ -4,40 +4,42 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    public GameManager gameManager;
     public LayerMask playerLayer;
     public int bonus;
 
+
     void OnCollisionEnter(Collision collision)
     {
-        if (IsPlayerCollision(collision))
+        if (IsPlayerCollision(collision)) //Detecte si c'est le joueur qui collisionne
         {
-            if (IsCollisionFromBottom(collision))
+            if (IsCollisionFromBottom(collision)) //Detecte si la collision vient du dessous
             {
-                if (bonus == 0)
+                if (bonus == 1) //Block cassable
                 {
                     Destroy(gameObject);
                 }
-                else if (bonus == 1)
+                else if (bonus == 2) //Block piece
                 {
-                    Debug.Log("Block piece !");
+                    gameManager.AddPiece(); //Ajout de 1 piece
+                    gameManager.AddScore(100); //Ajout du score
+                    bonus = 0;
                 }
-                else if (bonus == 2)
+                else if (bonus == 3) //Block champi
                 {
                     Debug.Log("Block champi !");
-                }
-                else
-                {
-                    Debug.Log("Autres block !");
                 }
             }
         }
     }
 
+    //Fonction de detection si c'est le joueur qui collisionne
     bool IsPlayerCollision(Collision collision)
     {
         return (playerLayer.value & 1 << collision.gameObject.layer) > 0;
     }
 
+    //Fonction de detection si la collision vient du dessous
     bool IsCollisionFromBottom(Collision collision)
     {
         foreach (ContactPoint contact in collision.contacts)

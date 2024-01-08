@@ -127,7 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ab22642d85ea64d928781fa0200473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  bonus: 2
+  bonus: 3

@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameManager gameManager;
+
+    public int health = 1;
+    public bool isHit = false;
 
     public float speed;
     //point A à B
@@ -42,77 +46,52 @@ public class Enemy : MonoBehaviour
 
         }
 
+        //Si la vie = 0, on detruit l'enemie et on ajoute le score
+        if(health == 0)
+        {
+            Destroy(gameObject);
+            gameManager.AddScore(500);
+        }
+        //Si l'enemie est touché par le joueur, on le fait mourir
+        if (isHit)
+        {
+            isHit = false;
+            gameManager.DeathPlayer();
+        }
+
     }
 
     void OnCollisionEnter(Collision collision)
     {
-         if (IsPlayerCollision(collision))
+         if (IsPlayerCollision(collision)) //Detecte si c'est le joueur qui le collisionne
         {
-            if(IsCollisionFromTop(collision))
+            if (CollisionSide(collision) == "Top") //Si la collision vient du haut
             {
-                Destroy(gameObject);
-
+                health = 0; //Definition de la vie à 0
             }
-
-            else if (IsCollisionFromRight(collision)|| IsCollisionFromLeft(collision))
+            else if(CollisionSide(collision) == "Side") //Si la collision vient du coté
             {
-                //rétraicir mario ou mourir
-
+                isHit = true; //Definition de isHit à vrai
             }
-
-
-
-
-
-
         }
-
-
-
-
     }
 
+    //Fonction de detection du joueur
     bool IsPlayerCollision(Collision collision)
     {
         return (playerLayer.value & 1 << collision.gameObject.layer) > 0;
     }
 
-    bool IsCollisionFromTop(Collision collision)
+    //Fonction de detection de où vient la collision
+    string CollisionSide(Collision collision)
     {
-        foreach (ContactPoint contact in collision.contacts)
+        if (collision.transform.position.y > transform.position.y)
         {
-            if (contact.normal.y < 0.8f)
-            {
-                return true;
-            }
+            return "Top";
         }
-        return false;
-
-        
-    }
-    bool IsCollisionFromRight(Collision collision)
-    {
-        //!! vérifier <
-        foreach (ContactPoint contact in collision.contacts)
+        else
         {
-            if (contact.normal.x < 0.8f)
-            {
-                return true;
-            }
+            return "Side";
         }
-        return false;
-    }
-    bool IsCollisionFromLeft(Collision collision)
-    
-    {
-        foreach (ContactPoint contact in collision.contacts)
-        {
-            if (contact.normal.x > 0.8f)
-            {
-                return true;
-            }
-        }
-        return false;
-
     }
 }
