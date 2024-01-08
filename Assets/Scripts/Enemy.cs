@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -11,6 +12,9 @@ public class Enemy : MonoBehaviour
     // change de direction après attain A OU B
     private Transform target;
     private int destPoint = 0;
+
+    //de lorenzo code
+    public LayerMask playerLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +41,78 @@ public class Enemy : MonoBehaviour
             target = waypoints[destPoint];
 
         }
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+         if (IsPlayerCollision(collision))
+        {
+            if(IsCollisionFromTop(collision))
+            {
+                Destroy(gameObject);
+
+            }
+
+            else if (IsCollisionFromRight(collision)|| IsCollisionFromLeft(collision))
+            {
+                //rétraicir mario ou mourir
+
+            }
+
+
+
+
+
+
+        }
+
+
+
+
+    }
+
+    bool IsPlayerCollision(Collision collision)
+    {
+        return (playerLayer.value & 1 << collision.gameObject.layer) > 0;
+    }
+
+    bool IsCollisionFromTop(Collision collision)
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if (contact.normal.y < 0.8f)
+            {
+                return true;
+            }
+        }
+        return false;
+
+        
+    }
+    bool IsCollisionFromRight(Collision collision)
+    {
+        //!! vérifier <
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if (contact.normal.x < 0.8f)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    bool IsCollisionFromLeft(Collision collision)
+    
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if (contact.normal.x > 0.8f)
+            {
+                return true;
+            }
+        }
+        return false;
 
     }
 }

@@ -25,6 +25,9 @@ public class Timer : MonoBehaviour
         }
         currentTimeText.text = currentTime.ToString();
     }
+    // game over arrête le timer ?
+    
 
+  
    
 }
