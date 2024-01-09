@@ -14,8 +14,7 @@ public class MarioMovement : MonoBehaviour {
 	[SerializeField] private float m_gravity => -2.0f * m_maxJumpHeight / Mathf.Pow(m_maxJumpTime / 2.0f, 2);
 	private float m_inputAxis;
 
-	private bool m_grounded, m_hitLeft, m_hitRight, m_hitTop;
-	private bool m_jumping;
+	private bool m_grounded, m_hitLeft, m_hitRight, m_hitTop, m_jumping;
 
 	private void Awake() {
 		m_rigidbody = GetComponent<Rigidbody>();
@@ -27,8 +26,6 @@ public class MarioMovement : MonoBehaviour {
 
 		Vector3 downOrigin = new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2.0f, transform.position.z);
 		Vector3 upOrigin = new Vector3(transform.position.x, transform.position.y + transform.localScale.y / 2.0f, transform.position.z);
-		// Vector3 leftOrigin = new Vector3(transform.position.x - transform.localScale.x / 4.0f, transform.position.y, transform.position.z);
-		// Vector3 rightOrigin = new Vector3(transform.position.x + transform.localScale.x / 4.0f, transform.position.y, transform.position.z);
 		Vector3 horizontalOrigin = new(transform.position.x, transform.position.y, transform.position.z);
         float verticalDistance = gameObject.transform.localScale.y / 2.0f;
         float horizontalDistance = gameObject.transform.localScale.x / 4.0f;
@@ -50,16 +47,16 @@ public class MarioMovement : MonoBehaviour {
 		Vector3 position = m_rigidbody.position;
 		position += m_velocity * Time.fixedDeltaTime;
 
-		Vector2 leftEge = m_camera.ScreenToWorldPoint(Vector2.zero);
+		Vector2 leftEdge = m_camera.ScreenToWorldPoint(Vector2.zero);
 		Vector2 rightEdge = m_camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-		position.x = Mathf.Clamp(position.x, leftEge.x + transform.localScale.x / 2.0f, rightEdge.x);
+		position.x = Mathf.Clamp(position.x, leftEdge.x + transform.localScale.x / 2.0f, rightEdge.x);
 
 		m_rigidbody.MovePosition(position);
 	}
 
 	private void HandleHorizontalMovement() {
 		m_inputAxis = Input.GetAxisRaw("Horizontal");
-		m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_inputAxis * m_moveSpeed / 2.0f, m_moveSpeed * Time.deltaTime);
+		m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_inputAxis * m_moveSpeed / 1.5f, m_moveSpeed * Time.deltaTime);
 
         if(m_hitLeft && m_inputAxis < 0.0f || m_hitRight && m_inputAxis > 0.0f) {
             m_velocity.x = 0.0f;
