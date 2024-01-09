@@ -24,18 +24,11 @@ public class MarioMovement : MonoBehaviour {
 	private void Update() {
 		HandleHorizontalMovement();
 
-		Vector3 downOrigin = new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2.0f, transform.position.z);
-		Vector3 upOrigin = new Vector3(transform.position.x, transform.position.y + transform.localScale.y / 2.0f, transform.position.z);
-		Vector3 horizontalOrigin = new(transform.position.x, transform.position.y, transform.position.z);
-        float verticalDistance = gameObject.transform.localScale.y / 2.0f;
-        float horizontalDistance = gameObject.transform.localScale.x / 4.0f;
-        float verticalRadius = gameObject.transform.localScale.y / 2.0f;
-        float horizontalRadius = gameObject.transform.localScale.x / 4.0f;
+		SendRaycast();
 
-		m_grounded = m_rigidbody.Raycast(Vector3.down, verticalDistance, verticalRadius);
-        m_hitTop = m_rigidbody.Raycast(Vector3.up, verticalDistance, verticalRadius);
-        m_hitLeft = m_rigidbody.Raycast(Vector3.left, horizontalDistance, horizontalRadius);
-        m_hitRight = m_rigidbody.Raycast(Vector3.right, horizontalDistance, horizontalRadius);
+		// Vector3 downOrigin = new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2.0f, transform.position.z);
+		// Vector3 upOrigin = new Vector3(transform.position.x, transform.position.y + transform.localScale.y / 2.0f, transform.position.z);
+		// Vector3 horizontalOrigin = new(transform.position.x, transform.position.y, transform.position.z);
 
 		if(m_grounded || m_hitTop)
 			HandleVerticalMovement();
@@ -85,5 +78,17 @@ public class MarioMovement : MonoBehaviour {
         }
 		if(m_grounded && !m_jumping)
 			m_velocity.y = 0.0f;
+	}
+
+	private void SendRaycast() {
+		float verticalDistance = gameObject.transform.localScale.y / 2.0f;
+        float horizontalDistance = gameObject.transform.localScale.x / 4.0f;
+        float verticalRadius = gameObject.transform.localScale.y / 2.0f;
+        float horizontalRadius = gameObject.transform.localScale.x / 4.0f;
+
+		m_grounded = m_rigidbody.Raycast(Vector3.down, verticalDistance, verticalRadius);
+        m_hitTop = m_rigidbody.Raycast(Vector3.up, verticalDistance, verticalRadius);
+        m_hitLeft = m_rigidbody.Raycast(Vector3.left, horizontalDistance, horizontalRadius);
+        m_hitRight = m_rigidbody.Raycast(Vector3.right, horizontalDistance, horizontalRadius);
 	}
 }
