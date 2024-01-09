@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject cam;
 
-    //Valeur par défaut du HUD
+    //Valeur par dï¿½faut du HUD
     public int piece = 0;
     public int health = 3;
     public int score = 0;
@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     //Valeur des textes sur l'UI
     public TMPro.TextMeshProUGUI scoreTxt;
     public TMPro.TextMeshProUGUI pieceTxt;
+	public TMPro.TextMeshProUGUI worldTxt;
     public TMPro.TextMeshProUGUI timerTxt;
     public TMPro.TextMeshProUGUI healthTxt;
 
@@ -66,10 +67,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        scoreTxt.text = "Score: " + score.ToString();
-        pieceTxt.text = "Pieces: " + piece.ToString();
-        timerTxt.text = "Timer: " + timer.ToString();
-        healthTxt.text = "Health: " + health.ToString();
+        scoreTxt.text = "Score\n" + score.ToString();
+        pieceTxt.text = "Pieces\n" + piece.ToString();
+		worldTxt.text = "World\n1-1";
+        timerTxt.text = "Timer\n" + timer.ToString();
+        healthTxt.text = "Health\n" + health.ToString();
 
         Time.timeScale = 1;
         endLevelUI.SetActive(false);
