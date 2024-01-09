@@ -17,30 +17,31 @@ public class Block : MonoBehaviour
             {
                 if (bonus == 1) //Block cassable
                 {
+                    bonus = 0;
                     Destroy(gameObject);
+                    gameManager.AddScore(50); //Ajout du score
                 }
                 else if (bonus == 2) //Block piece
                 {
-                    gameManager.AddPiece(); //Ajout de 1 piece
-                    gameManager.AddScore(100); //Ajout du score
                     bonus = 0;
+                    gameManager.AddPiece(); //Ajout de 1 piece
+                    gameManager.AddScore(200); //Ajout du score
                 }
                 else if (bonus == 3) //Block champi
                 {
+                    bonus = 0;
                     Debug.Log("Block champi !");
                 }
             }
         }
     }
 
-    //Fonction de detection si c'est le joueur qui collisionne
-    bool IsPlayerCollision(Collision collision)
+    bool IsPlayerCollision(Collision collision) //Fonction de detection si c'est le joueur qui collisionne
     {
         return (playerLayer.value & 1 << collision.gameObject.layer) > 0;
     }
 
-    //Fonction de detection si la collision vient du dessous
-    bool IsCollisionFromBottom(Collision collision)
+    bool IsCollisionFromBottom(Collision collision) //Fonction de detection si la collision vient du dessous
     {
         foreach (ContactPoint contact in collision.contacts)
         {
