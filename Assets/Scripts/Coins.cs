@@ -15,7 +15,6 @@ public class Coins : MonoBehaviour
 
     void Start()
     {
-        // Get the Collider component on Start
         coinCollider = GetComponent<Collider>();
     }
 
@@ -23,11 +22,9 @@ public class Coins : MonoBehaviour
     {
         if (!collected)
         {
-            // Rotate the coin
             transform.Rotate(0.0f, rotationSpeed * Time.deltaTime, 0.0f, Space.World);
         }
 
-        // Disappear after a certain time
         if (collected)
         {
             disappearTimer -= Time.deltaTime;
@@ -55,19 +52,14 @@ public class Coins : MonoBehaviour
 
         while (transform.localScale.x < maxScale)
         {
-            // Increase the size of the coin uniformly
+
             float growth = growthSpeed * Time.deltaTime;
             transform.localScale += new Vector3(1.0f, growth, 1.0f) *Time.deltaTime;
 
-            // Increase rotation speed
             rotationSpeed *= 1.5f;
 
             yield return null;
         }
-
-        // Optional: Perform any additional actions after the coin has reached its maximum size.
-
-        // Destroy the coin once collection is complete
         Destroy(gameObject);
     }
 }
