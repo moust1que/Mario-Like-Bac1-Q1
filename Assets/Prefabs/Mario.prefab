@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5423489162544313758}
   - component: {fileID: 5423489162544313759}
   - component: {fileID: 5423489162544313752}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 5423489163578560485}
   - component: {fileID: 5423489163578560486}
   - component: {fileID: 5423489163578560487}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 5423489163806787684}
   - component: {fileID: 5423489163806787685}
   - component: {fileID: 5423489163806787686}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Mario
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5423489163718288155}
-  m_LocalRotation: {x: 0, y: 0.008726535, z: 0, w: 0.9999619}
+  m_LocalRotation: {x: 0, y: 0.008726558, z: 0, w: 0.999962}
   m_LocalPosition: {x: 2, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -232,7 +232,7 @@ Transform:
   - {fileID: 5423489163578560480}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1, z: 0}
 --- !u!54 &5423489163806787707
 Rigidbody:
   m_ObjectHideFlags: 0

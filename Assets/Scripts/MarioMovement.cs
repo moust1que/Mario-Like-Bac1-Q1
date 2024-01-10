@@ -33,7 +33,8 @@ public class MarioMovement : MonoBehaviour {
 		if(m_grounded || m_hitTop)
 			HandleVerticalMovement();
 
-			ApplyGravity();
+		ApplyGravity();
+		m_rigidbody.AddForce(Vector3.zero);
 	}
 
 	private void FixedUpdate() {
@@ -90,5 +91,8 @@ public class MarioMovement : MonoBehaviour {
         m_hitTop = m_rigidbody.Raycast(Vector3.up, verticalDistance, verticalRadius);
         m_hitLeft = m_rigidbody.Raycast(Vector3.left, horizontalDistance, horizontalRadius);
         m_hitRight = m_rigidbody.Raycast(Vector3.right, horizontalDistance, horizontalRadius);
+	}
+
+	private void OnCollisionExit() {
 	}
 }
