@@ -2279,9 +2279,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 1231692321}
     m_Modifications:
     - target: {fileID: -5248283507227366525, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
+      propertyPath: m_bonus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
+      propertyPath: m_playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482773, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
       propertyPath: m_Name
       value: LuckyBlock02_Destroy
@@ -3930,9 +3942,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 803506378}
     m_Modifications:
     - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_bonus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482773, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: m_Name
       value: LuckyBlock01_Piece
@@ -6708,10 +6732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8861993f157449459e0f2592adfc73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 362669288}
-  health: 1
-  isHit: 0
-  playerLayer:
+  m_gameManager: {fileID: 362669288}
+  m_health: 1
+  m_isHit: 0
+  m_playerLayer:
     serializedVersion: 2
     m_Bits: 8
 --- !u!54 &169089644
@@ -8086,10 +8110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8861993f157449459e0f2592adfc73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 362669288}
-  health: 1
-  isHit: 0
-  playerLayer:
+  m_gameManager: {fileID: 362669288}
+  m_health: 1
+  m_isHit: 0
+  m_playerLayer:
     serializedVersion: 2
     m_Bits: 8
 --- !u!54 &206086129
@@ -12886,25 +12910,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b68f324f4086a4ea374332d3992675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGameEnded: 0
-  endLevelUI: {fileID: 1321538910}
-  player: {fileID: 3828214375731146028}
-  cam: {fileID: 963194225}
-  piece: 0
-  health: 3
-  score: 0
-  timer: 0
-  scoreTxt: {fileID: 1671361057}
-  pieceTxt: {fileID: 626928088}
-  worldTxt: {fileID: 1521144639}
-  timerTxt: {fileID: 1633336764}
-  healthTxt: {fileID: 511569807}
-  enemies:
+  m_isGameEnded: 0
+  m_endLevelUI: {fileID: 1321538910}
+  m_player: {fileID: 3828214375731146028}
+  m_cam: {fileID: 963194225}
+  m_timer: 120
+  m_scoreTxt: {fileID: 1671361057}
+  m_pieceTxt: {fileID: 626928088}
+  m_worldTxt: {fileID: 1521144639}
+  m_timerTxt: {fileID: 1633336764}
+  m_healthTxt: {fileID: 511569807}
+  m_enemies:
   - {fileID: 1122718397}
   - {fileID: 374584139}
   - {fileID: 169089640}
   - {fileID: 206086125}
-  luckyBlocks:
+  m_luckyBlocks:
   - {fileID: 596958037}
   - {fileID: 888557124}
   - {fileID: 2128737830}
@@ -13063,10 +13084,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8861993f157449459e0f2592adfc73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 362669288}
-  health: 1
-  isHit: 0
-  playerLayer:
+  m_gameManager: {fileID: 362669288}
+  m_health: 1
+  m_isHit: 0
+  m_playerLayer:
     serializedVersion: 2
     m_Bits: 8
 --- !u!54 &374584143
@@ -15809,9 +15830,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 911677136}
     m_Modifications:
     - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_bonus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482773, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: m_Name
       value: LuckyBlock01_Piece
@@ -24355,6 +24388,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738769330684529880, guid: b28198b35ec628d4b82cf9e13f33c339, type: 3}
       propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: 4738769330684529880, guid: b28198b35ec628d4b82cf9e13f33c339, type: 3}
+      propertyPath: m_gameManager
       value: 
       objectReference: {fileID: 362669288}
     - target: {fileID: 4738769330684529881, guid: b28198b35ec628d4b82cf9e13f33c339, type: 3}
@@ -39275,10 +39312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8861993f157449459e0f2592adfc73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 362669288}
-  health: 1
-  isHit: 0
-  playerLayer:
+  m_gameManager: {fileID: 362669288}
+  m_health: 1
+  m_isHit: 0
+  m_playerLayer:
     serializedVersion: 2
     m_Bits: 8
 --- !u!54 &1122718401
@@ -49439,9 +49476,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 1231692321}
     m_Modifications:
     - target: {fileID: -5248283507227366525, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
+      propertyPath: m_bonus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
+      propertyPath: m_playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482773, guid: 8685bd9d87e180e478b0852c3f2039d2, type: 3}
       propertyPath: m_Name
       value: LuckyBlock00_Destroy
@@ -56171,9 +56220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eba10440306b084596648e1556c55aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 362669288}
-  timerText: {fileID: 1633336764}
-  levelTime: 120
+  m_gameManager: {fileID: 362669288}
+  m_timerText: {fileID: 1633336764}
+  m_levelTime: 120
 --- !u!1001 &1633699520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57609,9 +57658,21 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_bonus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482773, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: m_Name
       value: LuckyBlock02_Piece
@@ -64076,9 +64137,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 803506378}
     m_Modifications:
     - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_bonus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482773, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: m_Name
       value: LuckyBlock00_Piece
@@ -69956,11 +70029,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 911677136}
     m_Modifications:
     - target: {fileID: -5248283507227366525, guid: e7a76e5314ad9324ab277245da8a8efe, type: 3}
+      propertyPath: m_bonus
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: e7a76e5314ad9324ab277245da8a8efe, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 362669288}
     - target: {fileID: -5248283507227366525, guid: e7a76e5314ad9324ab277245da8a8efe, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: e7a76e5314ad9324ab277245da8a8efe, type: 3}
       propertyPath: playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: e7a76e5314ad9324ab277245da8a8efe, type: 3}
+      propertyPath: m_playerLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482773, guid: e7a76e5314ad9324ab277245da8a8efe, type: 3}
@@ -72032,9 +72117,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 1231692321}
     m_Modifications:
     - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_bonus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: -5248283507227366525, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482773, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: m_Name
       value: LuckyBlock01_Piece
@@ -74117,7 +74214,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3828214375731146028}
     - target: {fileID: 3890817177454861189, guid: f8b9902df6ec5784e965b6dd2e20816b, type: 3}
+      propertyPath: m_player
+      value: 
+      objectReference: {fileID: 3828214375731146028}
+    - target: {fileID: 3890817177454861189, guid: f8b9902df6ec5784e965b6dd2e20816b, type: 3}
       propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 362669288}
+    - target: {fileID: 3890817177454861189, guid: f8b9902df6ec5784e965b6dd2e20816b, type: 3}
+      propertyPath: m_gameManager
       value: 
       objectReference: {fileID: 362669288}
     m_RemovedComponents: []

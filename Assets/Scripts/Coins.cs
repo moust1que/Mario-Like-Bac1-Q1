@@ -2,48 +2,47 @@ using System.Collections;
 using UnityEngine;
 
 public class Coins : MonoBehaviour {
-    [SerializeField] private float rotationSpeed = 50f;
-    [SerializeField] private float growthSpeed = 2f;
-    [SerializeField] private float maxScale = 2f;
-	[SerializeField] private GameManager gameManager;
+    [SerializeField] private float m_rotationSpeed = 50f;
+    [SerializeField] private float m_growthSpeed = 2f;
+    [SerializeField] private float m_maxScale = 2f;
+	[SerializeField] private GameManager m_gameManager;
 
-    private bool collected = false;
-    private float disappearTimer = 1f;
+    private bool m_collected = false;
+    private float m_disappearTimer = 1f;
 
-    private Collider coinCollider;
+    private Collider m_coinCollider;
 
     private void Start() {
-        coinCollider = GetComponent<Collider>();
+        m_coinCollider = GetComponent<Collider>();
     }
 
     private void Update() {
-        if(!collected) {
-            transform.Rotate(0.0f, rotationSpeed * Time.deltaTime, 0.0f, Space.World);
+        if(!m_collected) {
+            transform.Rotate(0.0f, m_rotationSpeed * Time.deltaTime, 0.0f, Space.World);
         }else {
-            disappearTimer -= Time.deltaTime;
-            if (disappearTimer <= 0f) {
+            m_disappearTimer -= Time.deltaTime;
+            if (m_disappearTimer <= 0f) {
                 Destroy(gameObject);
             }
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (!collected && other.CompareTag("Player")) {
-            collected = true;
-			gameManager.AddPiece();
+        if (!m_collected && other.CompareTag("Player")) {
+            m_collected = true;
+			m_gameManager.AddPiece();
+        	m_coinCollider.enabled = false;
             StartCoroutine(CollectCoin());
         }
     }
 
     private IEnumerator CollectCoin() {
         yield return new WaitForSeconds(0.01f);
-        coinCollider.enabled = false;
-
-        while (transform.localScale.x < maxScale) {
-            float growth = growthSpeed * Time.deltaTime;
+        while (transform.localScale.x < m_maxScale) {
+            float growth = m_growthSpeed * Time.deltaTime;
             transform.localScale += new Vector3(1.0f, growth, 1.0f) *Time.deltaTime;
 
-            rotationSpeed *= 1.5f;
+            m_rotationSpeed *= 1.5f;
 
             yield return null;
         }

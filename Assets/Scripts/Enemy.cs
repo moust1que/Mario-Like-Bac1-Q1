@@ -1,66 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
-    public GameManager gameManager;
+public class Enemy : MonoBehaviour {
+    [SerializeField] private GameManager m_gameManager;
 
-    public int health = 1;
-    public bool isHit = false;
+    public int m_health = 1;
+    [SerializeField] private bool m_isHit = false;
 
     //de lorenzo code
-    public LayerMask playerLayer;
+    [SerializeField] private LayerMask m_playerLayer;
 
     // Update is called once per frame
-    void Update()
-    {
-        //Si la vie = 0, on detruit l'enemie et on ajoute le score
-        if(health == 0)
-        {
+    private void Update() {
+        //Si la vie = 0, on esactive l'enemie et on ajoute le score
+        if(m_health == 0) {
 			gameObject.SetActive(false);
-            gameManager.AddScore(500);
+            m_gameManager.AddScore(500);
         }
         //Si l'enemie est touché par le joueur, on le fait mourir
-        if (isHit)
-        {
-            isHit = false;
-            gameManager.DeathPlayer();
+        if (m_isHit) {
+            m_isHit = false;
+            m_gameManager.DeathPlayer();
         }
-
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-         if (IsPlayerCollision(collision)) //Detecte si c'est le joueur qui le collisionne
-        {
-            if (CollisionSide(collision) == "Top") //Si la collision vient du haut
-            {
-                health = 0; //Definition de la vie à 0
-            }
-            else if(CollisionSide(collision) == "Side") //Si la collision vient du coté
-            {
-                isHit = true; //Definition de isHit à vrai
+    private void OnCollisionEnter(Collision collision) {
+		if (IsPlayerCollision(collision)) { //Detecte si c'est le joueur qui le collisionne
+            if (CollisionSide(collision) == "Top") { //Si la collision vient du haut
+                m_health = 0; //Definition de la vie à 0
+            }else if(CollisionSide(collision) == "Side") { //Si la collision vient du coté
+                m_isHit = true; //Definition de m_isHit à vrai
             }
         }
     }
 
     //Fonction de detection du joueur
-    bool IsPlayerCollision(Collision collision)
-    {
-        return (playerLayer.value & 1 << collision.gameObject.layer) > 0;
+    private bool IsPlayerCollision(Collision collision) {
+        return (m_playerLayer.value & 1 << collision.gameObject.layer) > 0;
     }
 
     //Fonction de detection de où vient la collision
-    string CollisionSide(Collision collision)
-    {
-        if (collision.transform.position.y > transform.position.y)
-        {
+    private string CollisionSide(Collision collision) {
+        if (collision.transform.position.y > transform.position.y) {
             return "Top";
-        }
-        else
-        {
+        }else {
             return "Side";
         }
     }

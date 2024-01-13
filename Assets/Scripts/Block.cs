@@ -1,25 +1,25 @@
 using UnityEngine;
 
 public class Block : MonoBehaviour {
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private LayerMask playerLayer;
-    public int bonus;
+    [SerializeField] private GameManager m_gameManager;
+    [SerializeField] private LayerMask m_playerLayer;
+    public int m_bonus;
 
     private void OnCollisionEnter(Collision collision) {
 		//Detecte si c'est le joueur qui collisionne
         if (IsPlayerCollision(collision)) {
 			//Detecte si la collision vient du dessous
             if (IsCollisionFromBottom(collision)) {
-                if (bonus == 1) { //Block cassable
-                    bonus = 0;
+                if (m_bonus == 1) { //Block cassable
+                    m_bonus = 0;
                     gameObject.SetActive(false);
-                    gameManager.AddScore(50); //Ajout du score
-                }else if (bonus == 2) { //Block piece
-                    bonus = 0;
-                    gameManager.AddPiece(); //Ajout de 1 piece
-                    gameManager.AddScore(200); //Ajout du score
-                }else if (bonus == 3) { //Block champi
-                    bonus = 0;
+                    m_gameManager.AddScore(50); //Ajout du score
+                }else if (m_bonus == 2) { //Block piece
+                    m_bonus = 0;
+                    m_gameManager.AddPiece(); //Ajout de 1 piece
+                    m_gameManager.AddScore(200); //Ajout du score
+                }else if (m_bonus == 3) { //Block champi
+                    m_bonus = 0;
                     Debug.Log("Block champi !");
                 }
             }
@@ -28,7 +28,7 @@ public class Block : MonoBehaviour {
 
 	//Fonction de detection si c'est le joueur qui collisionne
     private bool IsPlayerCollision(Collision collision) {
-        return (playerLayer.value & 1 << collision.gameObject.layer) > 0;
+        return (m_playerLayer.value & 1 << collision.gameObject.layer) > 0;
     }
 
 	//Fonction de detection si la collision vient du dessous

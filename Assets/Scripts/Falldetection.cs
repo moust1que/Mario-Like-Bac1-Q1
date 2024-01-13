@@ -1,23 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FallDetection : MonoBehaviour
-{
-    public GameManager gameManager;
-    public GameObject player;
-    // Start is called before the first frame update
-    void Start()
-    {
+public class FallDetection : MonoBehaviour {
+    [SerializeField] private GameManager m_gameManager;
+    [SerializeField] private GameObject m_player;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (player.transform.position.y <= -2)
-        {
-            gameManager.DeathPlayer();
+    void Update() {
+        if (m_player.transform.position.y <= -2) {
+            m_gameManager.DeathPlayer();
         }
     }
 }
