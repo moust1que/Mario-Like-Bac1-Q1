@@ -100,4 +100,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         endLevelUI.SetActive(false);
     }
+    /// piece et vie 
+    void Update()
+    {
+        if (piece % 3)
+        {
+            health++;
+        }
+    }
+}
 }
