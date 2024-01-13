@@ -12910,7 +12910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b68f324f4086a4ea374332d3992675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isGameEnded: 0
   m_endLevelUI: {fileID: 1321538910}
   m_player: {fileID: 3828214375731146028}
   m_cam: {fileID: 963194225}
@@ -56222,7 +56221,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameManager: {fileID: 362669288}
   m_timerText: {fileID: 1633336764}
-  m_levelTime: 120
 --- !u!1001 &1633699520
 PrefabInstance:
   m_ObjectHideFlags: 0

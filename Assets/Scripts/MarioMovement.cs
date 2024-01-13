@@ -14,7 +14,7 @@ public class MarioMovement : MonoBehaviour {
 	[SerializeField] private float m_gravity => -2.0f * m_maxJumpHeight / Mathf.Pow(m_maxJumpTime / 2.0f, 2);
 	private float m_inputAxis;
 
-	private bool m_grounded, m_hitLeft, m_hitRight, m_hitTop, m_jumping;
+	private bool m_grounded, m_hitLeft, m_hitRight, m_hitTop, m_jumping, m_sprint = false;
 
 	private void Awake() {
 		m_rigidbody = GetComponent<Rigidbody>();
@@ -51,6 +51,11 @@ public class MarioMovement : MonoBehaviour {
         if(m_hitLeft && m_inputAxis < 0.0f || m_hitRight && m_inputAxis > 0.0f) {
             m_velocity.x = 0.0f;
         }
+
+		if(Input.GetButtonDown("Sprint"))
+			m_moveSpeed += 10.0f;
+		if(Input.GetButtonUp("Sprint"))
+			m_moveSpeed -= 10.0f;
 	}
 
 	private void HandleVerticalMovement() {
