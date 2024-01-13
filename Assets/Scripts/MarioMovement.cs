@@ -26,10 +26,6 @@ public class MarioMovement : MonoBehaviour {
 
 		SendRaycast();
 
-		// Vector3 downOrigin = new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2.0f, transform.position.z);
-		// Vector3 upOrigin = new Vector3(transform.position.x, transform.position.y + transform.localScale.y / 2.0f, transform.position.z);
-		// Vector3 horizontalOrigin = new(transform.position.x, transform.position.y, transform.position.z);
-
 		if(m_grounded || m_hitTop)
 			HandleVerticalMovement();
 
@@ -77,8 +73,8 @@ public class MarioMovement : MonoBehaviour {
             m_velocity.y += m_gravity * multiplier * Time.deltaTime;
             m_velocity.y = Mathf.Max(m_velocity.y, m_gravity / 2.0f);
         }
-		if(m_grounded && !m_jumping)
-			m_velocity.y = 0.0f;
+		// if(m_grounded && !m_jumping)
+		// 	m_velocity.y = 0.0f;
 	}
 
 	private void SendRaycast() {
@@ -91,8 +87,5 @@ public class MarioMovement : MonoBehaviour {
         m_hitTop = m_rigidbody.Raycast(Vector3.up, verticalDistance, verticalRadius);
         m_hitLeft = m_rigidbody.Raycast(Vector3.left, horizontalDistance, horizontalRadius);
         m_hitRight = m_rigidbody.Raycast(Vector3.right, horizontalDistance, horizontalRadius);
-	}
-
-	private void OnCollisionExit() {
 	}
 }

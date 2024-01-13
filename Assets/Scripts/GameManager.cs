@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,32 +24,55 @@ public class GameManager : MonoBehaviour
     public TMPro.TextMeshProUGUI timerTxt;
     public TMPro.TextMeshProUGUI healthTxt;
 
+	public List<GameObject> enemies = new();
+
     //Fonction d'ajout d'une piece au HUD
     public void AddPiece()
     {
         piece++;
-        pieceTxt.text = "Pieces: " + piece.ToString();
+        pieceTxt.text = $"Pieces\n{piece}";
     }
 
     //Fonction d'ajout du score "addScore" au HUD
     public void AddScore(int addScore)
     {
-        score = score + addScore;
-        scoreTxt.text = "Score: " + score.ToString();
+        score += addScore;
+        scoreTxt.text = $"Score\n{score}";
     }
 
     //Fonction de mort du joueur / Enlever une vie
     public void DeathPlayer()
     {
+		Reset();
+		Debug.Log("In");
         health--;
-        player.transform.position = new Vector3(2.0f, 1.06f, 0.0f);
-        cam.transform.position = new Vector3(2.0f, 13.0f, -10.0f);
         healthTxt.text = "Health: " + health.ToString();
         if (health == 0)
         {
             EndLevel();
         }
     }
+
+	private void Reset() {
+		// Reset player
+		player.transform.position = new Vector3(2.0f, 1.05f, 0.0f);
+        cam.transform.position = new Vector3(2.0f, 13.0f, -10.0f);
+
+		// Reset Enemies
+		for(int i = 0; i < enemies.Count; i++) {
+			enemies[i].SetActive(true);
+		}
+
+		// Reset Score
+		score = 0;
+		scoreTxt.text = $"Score\n{score}";
+
+		// Reset Coins
+		piece = 0;
+        pieceTxt.text = $"Pieces\n{piece}";
+
+		// Reset Lucky Blocks
+	}
 
     //Fonction de fin de level
     public void EndLevel()
@@ -67,11 +91,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        scoreTxt.text = "Score\n" + score.ToString();
-        pieceTxt.text = "Pieces\n" + piece.ToString();
+		scoreTxt.text = $"Score\n{score}";
+        pieceTxt.text = $"Pieces\n{piece}";
 		worldTxt.text = "World\n1-1";
-        timerTxt.text = "Timer\n" + timer.ToString();
-        healthTxt.text = "Health\n" + health.ToString();
+        timerTxt.text = $"Timer\n{timer}";
+        healthTxt.text = $"Health\n{health}";
 
         Time.timeScale = 1;
         endLevelUI.SetActive(false);

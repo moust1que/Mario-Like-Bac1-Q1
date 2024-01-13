@@ -19,7 +19,8 @@ public class Enemy : MonoBehaviour
         //Si la vie = 0, on detruit l'enemie et on ajoute le score
         if(health == 0)
         {
-            Destroy(gameObject);
+			gameObject.SetActive(false);
+            // Destroy(gameObject);
             gameManager.AddScore(500);
         }
         //Si l'enemie est touché par le joueur, on le fait mourir

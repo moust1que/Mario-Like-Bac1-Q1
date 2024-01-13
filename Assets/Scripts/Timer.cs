@@ -1,33 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
-{
-    bool timerActive = false;
-    float currentTime;
-    public int startMinutes;
-    public Text currentTimeText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentTime = startMinutes*60;
+public class Timer : MonoBehaviour {
+	[SerializeField] GameManager gameManager;
+    [SerializeField] private TextMeshProUGUI timerText;
+    private float timeRemaining;
+
+	[SerializeField] private float levelTime = 20.0f;
+
+	private float time;
+	private float timerInterval = 1.0f;
+	private float tick;
+	
+	private void Awake() {
+		timeRemaining = levelTime;
+		time = (int)Time.time;
+		tick = timerInterval;
+	}
+
+	private void Update() {
+		time = (int)Time.time;
+
+		if(time == tick) {
+			tick = time + timerInterval;
+			TimerExecute();
+		}
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (timerActive == true)
-        {
-            currentTime = currentTime - Time.deltaTime;
-
-        }
-        currentTimeText.text = currentTime.ToString();
-    }
-    // game over arrête le timer ?
-    
-
-  
-   
+	private void TimerExecute() {
+        timerText.text = $"Timer\n{timeRemaining}";
+		if(timeRemaining > 0.0f)
+			timeRemaining--;
+		else if(timeRemaining == 0.0f) {
+			gameManager.DeathPlayer();
+			timeRemaining = levelTime;
+		}
+	}
 }
