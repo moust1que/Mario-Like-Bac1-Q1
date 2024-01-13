@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour
         if(health == 0)
         {
 			gameObject.SetActive(false);
-            // Destroy(gameObject);
             gameManager.AddScore(500);
         }
         //Si l'enemie est touché par le joueur, on le fait mourir

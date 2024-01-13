@@ -59,8 +59,11 @@ public class GameManager : MonoBehaviour
         cam.transform.position = new Vector3(2.0f, 13.0f, -10.0f);
 
 		// Reset Enemies
+		Enemy enemy;
 		for(int i = 0; i < enemies.Count; i++) {
+			enemy = enemies[i].GetComponent<Enemy>();
 			enemies[i].SetActive(true);
+			enemy.health = 1;
 		}
 
 		// Reset Score
@@ -72,6 +75,17 @@ public class GameManager : MonoBehaviour
         pieceTxt.text = $"Pieces\n{piece}";
 
 		// Reset Lucky Blocks
+		Block block;
+		for(int i = 0; i < luckyBlocks.Count; i++) {
+			block = luckyBlocks[i].GetComponent<Block>();
+			if(i == 0)
+				block.bonus = 3;
+			else if(i == 5 || i == 7) {
+				block.bonus = 1;
+				luckyBlocks[i].SetActive(true);
+			}else
+				block.bonus = 2;
+		}
 	}
 
     //Fonction de fin de level
@@ -103,10 +117,8 @@ public class GameManager : MonoBehaviour
     /// piece et vie 
     void Update()
     {
-        if (piece % 3)
-        {
+        if (piece % 3 == 0) {
             health++;
         }
     }
-}
 }

@@ -1,8 +1,7 @@
 using UnityEngine;
 
 public class CameraScrollHandler : MonoBehaviour {
-	[SerializeField]
-	private Transform m_mario;
+	[SerializeField] private Transform m_mario;
 
 	private void LateUpdate() {
 		Vector3 cameraPosition = transform.position;

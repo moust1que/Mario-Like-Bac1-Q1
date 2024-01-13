@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Falldetection : MonoBehaviour
+public class FallDetection : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject player;
