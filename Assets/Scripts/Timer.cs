@@ -1,41 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour {
-	[SerializeField] GameManager gameManager;
-    [SerializeField] private TextMeshProUGUI timerText;
-    private float timeRemaining;
+	[SerializeField] GameManager m_gameManager;
+    [SerializeField] private TextMeshProUGUI m_timerText;
+    private float m_timeRemaining;
 
-	[SerializeField] private float levelTime = 20.0f;
+	private float m_levelTime;
 
-	private float time;
-	private float timerInterval = 1.0f;
-	private float tick;
+	private float m_time;
+	private float m_timerInterval = 1.0f;
+	private float m_tick;
 	
 	private void Awake() {
-		timeRemaining = levelTime;
-		time = (int)Time.time;
-		tick = timerInterval;
+		m_levelTime = m_gameManager.GetComponent<GameManager>().m_timer;
+		m_timeRemaining = m_levelTime;
+		m_time = (int)Time.time;
+		m_tick = m_timerInterval;
 	}
 
 	private void Update() {
-		time = (int)Time.time;
+		m_time = (int)Time.time;
 
-		if(time == tick) {
-			tick = time + timerInterval;
+		if(m_time == m_tick) {
+			m_tick = m_time + m_timerInterval;
 			TimerExecute();
 		}
     }
 
 	private void TimerExecute() {
-        timerText.text = $"Timer\n{timeRemaining}";
-		if(timeRemaining > 0.0f)
-			timeRemaining--;
-		else if(timeRemaining == 0.0f) {
-			gameManager.DeathPlayer();
-			timeRemaining = levelTime;
+		m_gameManager.GetComponent<GameManager>().m_timer = m_timeRemaining;
+		if(m_timeRemaining > 0.0f)
+			m_timeRemaining--;
+		else if(m_timeRemaining == 0.0f) {
+			m_gameManager.DeathPlayer();
+			m_timeRemaining = m_levelTime;
 		}
 	}
 }

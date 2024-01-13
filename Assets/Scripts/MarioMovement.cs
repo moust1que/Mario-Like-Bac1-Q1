@@ -73,8 +73,6 @@ public class MarioMovement : MonoBehaviour {
             m_velocity.y += m_gravity * multiplier * Time.deltaTime;
             m_velocity.y = Mathf.Max(m_velocity.y, m_gravity / 2.0f);
         }
-		// if(m_grounded && !m_jumping)
-		// 	m_velocity.y = 0.0f;
 	}
 
 	private void SendRaycast() {
