@@ -12,6 +12,7 @@ public class FlagDown : MonoBehaviour
     private Rigidbody playerRigidbody;
     private MarioMovement playerMovementScript;
     private Vector3 initialPosition;
+    [SerializeField]private GameManager gameManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +21,7 @@ public class FlagDown : MonoBehaviour
             LowerFlag();
             DisablePlayerControls(other.gameObject);
             Invoke("MovePlayerAfterDelay", delayBeforePlayerMove);
+            gameManager.AddScore(1000);
         }
     }
 
