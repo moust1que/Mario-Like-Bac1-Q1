@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject cam;
 
-    //Valeur par d�faut du HUD
+    //Valeur par defaut du HUD
     public int piece = 0;
     public int health = 3;
     public int score = 0;
@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public TMPro.TextMeshProUGUI healthTxt;
 
 	public List<GameObject> enemies = new();
+	public List<GameObject> luckyBlocks = new();
 
     //Fonction d'ajout d'une piece au HUD
     public void AddPiece()
@@ -44,7 +45,6 @@ public class GameManager : MonoBehaviour
     public void DeathPlayer()
     {
 		Reset();
-		Debug.Log("In");
         health--;
         healthTxt.text = "Health: " + health.ToString();
         if (health == 0)
