@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     //Valeur par defaut du HUD
     public int piece = 0;
+	private int pieceForLive = 0;
     public int health = 3;
     public int score = 0;
     public int timer = 0;
@@ -30,8 +31,8 @@ public class GameManager : MonoBehaviour
     //Fonction d'ajout d'une piece au HUD
     public void AddPiece()
     {
-        piece++;
-        pieceTxt.text = $"Pieces\n{piece}";
+        pieceForLive++;
+        // pieceTxt.text = $"Pieces\n{piece + pieceForLive}";
     }
 
     //Fonction d'ajout du score "addScore" au HUD
@@ -105,11 +106,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-		scoreTxt.text = $"Score\n{score}";
-        pieceTxt.text = $"Pieces\n{piece}";
-		worldTxt.text = "World\n1-1";
-        timerTxt.text = $"Timer\n{timer}";
-        healthTxt.text = $"Health\n{health}";
+		PrintText();
 
         Time.timeScale = 1;
         endLevelUI.SetActive(false);
@@ -117,8 +114,21 @@ public class GameManager : MonoBehaviour
     /// piece et vie 
     void Update()
     {
-        if (piece % 3 == 0) {
+        if (pieceForLive == 3) {
+			piece += pieceForLive;
+			pieceForLive = 0;
+			Debug.Log("in");
             health++;
         }
+
+		PrintText();
     }
+
+	private void PrintText() {
+		scoreTxt.text = $"Score\n{score}";
+        pieceTxt.text = $"Pieces\n{piece + pieceForLive}";
+		worldTxt.text = "World\n1-1";
+        timerTxt.text = $"Timer\n{timer}";
+        healthTxt.text = $"Health\n{health}";
+	}
 }
