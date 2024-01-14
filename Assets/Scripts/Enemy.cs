@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour {
     //Fonction de detection de où vient la collision
     private string CollisionSide(Collision collision) {
 		foreach(ContactPoint contact in collision.contacts) {
-			if(contact.normal.y < -0.8f)
+			if(contact.normal.y < -0.5f)
 				return "Top";
 		}
 		return "Side";

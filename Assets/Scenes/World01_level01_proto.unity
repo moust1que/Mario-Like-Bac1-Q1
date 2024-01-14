@@ -4088,6 +4088,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1721751909427482778, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
 --- !u!1001 &98540070
@@ -6691,10 +6695,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 169089641}
-  - component: {fileID: 169089645}
   - component: {fileID: 169089644}
   - component: {fileID: 169089643}
   - component: {fileID: 169089642}
+  - component: {fileID: 169089645}
   m_Layer: 6
   m_Name: koopa02
   m_TagString: Untagged
@@ -6766,8 +6770,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!136 &169089645
-CapsuleCollider:
+--- !u!65 &169089645
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6776,10 +6780,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.1329727, y: 1.8357034, z: 1}
+  m_Center: {x: -0.008014679, y: -0.0788399, z: 0}
 --- !u!1001 &172335677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8069,10 +8072,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 206086126}
-  - component: {fileID: 206086130}
   - component: {fileID: 206086129}
   - component: {fileID: 206086128}
   - component: {fileID: 206086127}
+  - component: {fileID: 206086130}
   m_Layer: 6
   m_Name: koopa03
   m_TagString: Untagged
@@ -8144,8 +8147,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!136 &206086130
-CapsuleCollider:
+--- !u!65 &206086130
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8154,10 +8157,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.1329727, y: 1.8357034, z: 1}
+  m_Center: {x: -0.008014679, y: -0.0788399, z: 0}
 --- !u!4 &210334682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3344916415263433809, guid: af92245c7e33bff4fa83779d8e5196a0, type: 3}
@@ -13083,6 +13085,11 @@ MonoBehaviour:
   - {fileID: 374584139}
   - {fileID: 169089640}
   - {fileID: 206086125}
+  m_enemiesTransform:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_luckyBlocks:
   - {fileID: 596958037}
   - {fileID: 888557124}
@@ -13203,10 +13210,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 374584140}
-  - component: {fileID: 374584144}
   - component: {fileID: 374584143}
   - component: {fileID: 374584142}
   - component: {fileID: 374584141}
+  - component: {fileID: 374584144}
   m_Layer: 6
   m_Name: koopa01
   m_TagString: Untagged
@@ -13278,8 +13285,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!136 &374584144
-CapsuleCollider:
+--- !u!65 &374584144
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -13288,10 +13295,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.1329727, y: 1.8357034, z: 1}
+  m_Center: {x: -0.008014679, y: -0.0788399, z: 0}
 --- !u!1 &377753445
 GameObject:
   m_ObjectHideFlags: 0
@@ -16172,6 +16178,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482774, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751909427482778, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -39864,10 +39874,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1122718398}
-  - component: {fileID: 1122718402}
   - component: {fileID: 1122718401}
   - component: {fileID: 1122718400}
   - component: {fileID: 1122718399}
+  - component: {fileID: 1122718403}
   m_Layer: 6
   m_Name: koopa00
   m_TagString: Untagged
@@ -39939,8 +39949,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!136 &1122718402
-CapsuleCollider:
+--- !u!65 &1122718403
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -39949,10 +39959,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.1329727, y: 1.8357034, z: 1}
+  m_Center: {x: -0.008014679, y: -0.0788399, z: 0}
 --- !u!4 &1123215835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3344916415263433809, guid: af92245c7e33bff4fa83779d8e5196a0, type: 3}
@@ -58788,6 +58797,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1721751909427482778, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
 --- !u!1 &1673761543
@@ -65282,6 +65295,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1721751909427482778, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75031108b26fe5644bccb5e59091fb8a, type: 3}
 --- !u!1 &1865845080
@@ -71315,6 +71332,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1721751909427482774, guid: e7a76e5314ad9324ab277245da8a8efe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751909427482778, guid: e7a76e5314ad9324ab277245da8a8efe, type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -6,7 +6,7 @@ public class MarioMovement : MonoBehaviour {
 	private Rigidbody m_rigidbody;
 	private Camera m_camera;
 
-	private Vector3 m_velocity;
+	public Vector3 m_velocity;
 	
 	public float m_moveSpeed = 20.0f;
 	[SerializeField] private float m_maxJumpHeight = 4.5f,
@@ -46,6 +46,11 @@ public class MarioMovement : MonoBehaviour {
 
 	private void HandleHorizontalMovement() {
 		m_inputAxis = Input.GetAxisRaw("Horizontal");
+		if(m_inputAxis == 1.0f) {
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0.0f, 0.0f, 0.0f),  Time.deltaTime * 5.0f);
+		}else if(m_inputAxis == -1.0f) {
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0.0f, 180.0f, 0.0f),  Time.deltaTime * 5.0f);
+		}
 		m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_inputAxis * m_moveSpeed / 1.5f, m_moveSpeed * Time.deltaTime);
 
         if(m_hitLeft && m_inputAxis < 0.0f || m_hitRight && m_inputAxis > 0.0f) {
@@ -81,21 +86,15 @@ public class MarioMovement : MonoBehaviour {
 	}
 
 	private void SendRaycast() {
-		// float verticalDistance = gameObject.GetComponent<CapsuleCollider>().height / 4.0f;
-        // float horizontalDistance = gameObject.GetComponent<CapsuleCollider>().radius / 2.0f;
-        // float verticalRadius = gameObject.GetComponent<CapsuleCollider>().height / 4.0f;
-        // float horizontalRadius = gameObject.GetComponent<CapsuleCollider>().radius / 2.0f;
-		float verticalDistance, horizontalDistance = 0.0f, radius = 0.5f;
-		if(!m_gameManager.m_bigMario) {
-			verticalDistance = 0.5f;
-		}else {
-			verticalDistance = 1.0f;
-		}
+		float verticalDistance = gameObject.GetComponent<CapsuleCollider>().height / 4.0f;
+        float horizontalDistance = gameObject.GetComponent<CapsuleCollider>().radius / 2.0f;
+        float verticalRadius = gameObject.GetComponent<CapsuleCollider>().height / 4.0f;
+        float horizontalRadius = gameObject.GetComponent<CapsuleCollider>().radius / 2.0f;
 
-		m_grounded = m_rigidbody.Raycast(Vector3.down, verticalDistance, radius);
-        m_hitTop = m_rigidbody.Raycast(Vector3.up, verticalDistance, radius);
-        m_hitLeft = m_rigidbody.Raycast(Vector3.left, horizontalDistance, radius);
-        m_hitRight = m_rigidbody.Raycast(Vector3.right, horizontalDistance, radius);
+		m_grounded = m_rigidbody.Raycast(Vector3.down, verticalDistance, verticalRadius);
+        m_hitTop = m_rigidbody.Raycast(Vector3.up, verticalDistance, verticalRadius);
+        m_hitLeft = m_rigidbody.Raycast(Vector3.left, horizontalDistance, horizontalRadius);
+        m_hitRight = m_rigidbody.Raycast(Vector3.right, horizontalDistance, horizontalRadius);
 	}
 
 	public void setBigMario() {

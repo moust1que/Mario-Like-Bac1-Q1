@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI m_healthTxt;
 
 	[SerializeField] private List<GameObject> m_enemies = new();
+	[SerializeField] private List<Vector3> m_enemiesTransform = new();
 	[SerializeField] private List<GameObject> m_luckyBlocks = new();
 	[SerializeField] private List<GameObject> m_coins = new();
 
@@ -32,6 +33,9 @@ public class GameManager : MonoBehaviour
 
 	private void Awake() {
 		m_bckpTimer = m_timer;
+		for(int i = 0; i < m_enemies.Count; i++) {
+			m_enemiesTransform[i] = m_enemies[i].transform.position;
+		}
 	}
 
     //Fonction d'ajout d'une piece au HUD
@@ -59,15 +63,12 @@ public class GameManager : MonoBehaviour
     }
 
 	private void Reset() {
-		// Reset m_player
-		m_player.transform.position = new Vector3(2.0f, 1.05f, 0.0f);
-        m_cam.transform.position = new Vector3(2.0f, 13.0f, -10.0f);
-
 		// Reset Enemies
 		Enemy enemy;
 		for(int i = 0; i < m_enemies.Count; i++) {
 			enemy = m_enemies[i].GetComponent<Enemy>();
 			m_enemies[i].SetActive(true);
+			m_enemies[i].transform.position = m_enemiesTransform[i];
 			enemy.m_health = 1;
 		}
 
@@ -118,9 +119,12 @@ public class GameManager : MonoBehaviour
 		flagDown.m_isFlagLowered = false;
 		flagDown.m_playerControlsDisabled = false;
 
-		// Reset Mario scale
+		// Reset Mario
 		m_player.GetComponent<MarioMovement>().setSmallMario();
 		m_player.GetComponent<MarioMovement>().m_moveSpeed = 20.0f;
+		m_player.transform.position = new Vector3(2.0f, 1.05f, 0.0f);
+        m_cam.transform.position = new Vector3(2.0f, 13.0f, -10.0f);
+		m_player.GetComponent<MarioMovement>().m_velocity = Vector3.zero;
 	}
 
     //Fonction de fin de level
