@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_endLevelUI;
+	[SerializeField] private GameObject m_winLevelUI;
     [SerializeField] private GameObject m_player;
     [SerializeField] private GameObject m_cam;
 
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private List<GameObject> m_enemies = new();
 	[SerializeField] private List<GameObject> m_luckyBlocks = new();
+	[SerializeField] private List<GameObject> m_coins = new();
+
+	public bool m_bigMario = false;
 
 	private void Awake() {
 		m_bckpTimer = m_timer;
@@ -42,11 +46,16 @@ public class GameManager : MonoBehaviour
 
     //Fonction de mort du joueur / Enlever une vie
     public void DeathPlayer() {
-		Reset();
-        m_health--;
-        if (m_health == 0) {
-            EndLevel();
-        }
+		if(m_bigMario) {
+			MarioMovement marioMovement = GameObject.Find("Mario").GetComponent<MarioMovement>();
+			marioMovement.setSmallMario();
+		}else {
+			Reset();
+			m_health--;
+		}
+		if (m_health == 0) {
+			EndLevel();
+		}
     }
 
 	private void Reset() {
@@ -83,9 +92,35 @@ public class GameManager : MonoBehaviour
 		}
 
 		// Reste Timer
+		Timer timer;
+		timer = GameObject.Find("TimeTxt").GetComponent<Timer>();
 		m_timer = m_bckpTimer;
+		timer.m_timeRemaining = timer.m_levelTime;
 
 		// Reset Coins
+		Coins coin;
+		for(int i = 0; i < m_coins.Count; i++) {
+			m_coins[i].SetActive(true);
+			m_coins[i].transform.localScale = new Vector3(1.0f, 0.1294303f, 1.0f);
+			coin = m_coins[i].GetComponent<Coins>();
+			coin.m_rotationSpeed = 50.0f;
+			coin.m_collected = false;
+			coin.m_coinCollider.enabled = true;
+			coin.m_disappearTimer = 1.0f;
+		}
+
+		// Reset flag
+		GameObject flag;
+		flag = GameObject.Find("flag down").gameObject;
+		flag.transform.position = new Vector3(214.947861f,22.1906128f,0.839488864f);
+		FlagDown flagDown;
+		flagDown = GameObject.Find("flag down").GetComponent<FlagDown>();
+		flagDown.m_isFlagLowered = false;
+		flagDown.m_playerControlsDisabled = false;
+
+		// Reset Mario scale
+		m_player.GetComponent<MarioMovement>().setSmallMario();
+		m_player.GetComponent<MarioMovement>().m_moveSpeed = 20.0f;
 	}
 
     //Fonction de fin de level
@@ -94,10 +129,17 @@ public class GameManager : MonoBehaviour
         m_endLevelUI.SetActive(true);
     }
 
+	public void WinLevel() {
+		Time.timeScale = 0.0f;
+        m_winLevelUI.SetActive(true);
+	}
+
     //Fonction de Restart du niveau
     public void Restart() {
 		Time.timeScale = 1.0f;
         m_endLevelUI.SetActive(false);
+        m_winLevelUI.SetActive(false);
+		m_player.GetComponent<MarioMovement>().enabled = true;
 		Reset();
 		m_health = 3;
     }
@@ -120,7 +162,7 @@ public class GameManager : MonoBehaviour
     }
 
 	private void PrintText() {
-		m_scoreTxt.text = $"Score\n{m_score}";
+		m_scoreTxt.text = $"Mario\n{m_score}";
         m_pieceTxt.text = $"Pieces\n{m_piece + m_pieceForLive}";
 		m_worldTxt.text = "World\n1-1";
         m_timerTxt.text = $"Timer\n{m_timer}";

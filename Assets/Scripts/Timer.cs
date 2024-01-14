@@ -4,9 +4,9 @@ using UnityEngine;
 public class Timer : MonoBehaviour {
 	[SerializeField] GameManager m_gameManager;
     [SerializeField] private TextMeshProUGUI m_timerText;
-    private float m_timeRemaining;
+    public float m_timeRemaining;
 
-	private float m_levelTime;
+	public float m_levelTime;
 
 	private float m_time;
 	private float m_timerInterval = 1.0f;
@@ -35,6 +35,7 @@ public class Timer : MonoBehaviour {
 		else if(m_timeRemaining == 0.0f) {
 			m_gameManager.DeathPlayer();
 			m_timeRemaining = m_levelTime;
+			Debug.Log(m_timeRemaining);
 		}
 	}
 }

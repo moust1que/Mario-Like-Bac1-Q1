@@ -3,7 +3,9 @@ using UnityEngine;
 public class Block : MonoBehaviour {
     [SerializeField] private GameManager m_gameManager;
     [SerializeField] private LayerMask m_playerLayer;
+	private MarioMovement m_marioMovement;
     public int m_bonus;
+	// private bool m_mushroomTime = false;
 
     private void OnCollisionEnter(Collision collision) {
 		//Detecte si c'est le joueur qui collisionne
@@ -11,16 +13,19 @@ public class Block : MonoBehaviour {
 			//Detecte si la collision vient du dessous
             if (IsCollisionFromBottom(collision)) {
                 if (m_bonus == 1) { //Block cassable
-                    m_bonus = 0;
-                    gameObject.SetActive(false);
-                    m_gameManager.AddScore(50); //Ajout du score
+					if(m_gameManager.m_bigMario){
+                    	m_bonus = 0;
+                    	gameObject.SetActive(false);
+                    	m_gameManager.AddScore(50); //Ajout du score
+					}
                 }else if (m_bonus == 2) { //Block piece
                     m_bonus = 0;
                     m_gameManager.AddPiece(); //Ajout de 1 piece
                     m_gameManager.AddScore(200); //Ajout du score
                 }else if (m_bonus == 3) { //Block champi
                     m_bonus = 0;
-                    Debug.Log("Block champi !");
+					m_marioMovement = collision.gameObject.GetComponent<MarioMovement>();
+					m_marioMovement.setBigMario();
                 }
             }
         }

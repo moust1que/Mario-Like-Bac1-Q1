@@ -2,15 +2,15 @@ using System.Collections;
 using UnityEngine;
 
 public class Coins : MonoBehaviour {
-    [SerializeField] private float m_rotationSpeed = 50f;
+    public float m_rotationSpeed = 50f;
     [SerializeField] private float m_growthSpeed = 2f;
     [SerializeField] private float m_maxScale = 2f;
 	[SerializeField] private GameManager m_gameManager;
 
-    private bool m_collected = false;
-    private float m_disappearTimer = 1f;
+    public bool m_collected = false;
+    public float m_disappearTimer = 1f;
 
-    private Collider m_coinCollider;
+    public Collider m_coinCollider;
 
     private void Start() {
         m_coinCollider = GetComponent<Collider>();
@@ -22,7 +22,7 @@ public class Coins : MonoBehaviour {
         }else {
             m_disappearTimer -= Time.deltaTime;
             if (m_disappearTimer <= 0f) {
-                Destroy(gameObject);
+				gameObject.SetActive(false);
             }
         }
     }
@@ -40,12 +40,11 @@ public class Coins : MonoBehaviour {
         yield return new WaitForSeconds(0.01f);
         while (transform.localScale.x < m_maxScale) {
             float growth = m_growthSpeed * Time.deltaTime;
-            transform.localScale += new Vector3(1.0f, growth, 1.0f) *Time.deltaTime;
+            transform.localScale += new Vector3(1.0f, growth, 1.0f) * Time.deltaTime;
 
             m_rotationSpeed *= 1.5f;
 
             yield return null;
         }
-        Destroy(gameObject);
     }
 }
