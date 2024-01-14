@@ -37,12 +37,9 @@ public class Timer : MonoBehaviour {
 		m_gameManager.GetComponent<GameManager>().m_timer = m_timeRemaining;
 		if(m_timeRemaining > 0.0f)
 			m_timeRemaining--;
- 
-
 		else if(m_timeRemaining == 0.0f) {
 			m_gameManager.DeathPlayer();
 			m_timeRemaining = m_levelTime;
-			Debug.Log(m_timeRemaining);
 		}
  
 
