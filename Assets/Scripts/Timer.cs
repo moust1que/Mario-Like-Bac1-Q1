@@ -2,8 +2,11 @@ using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour {
-	[SerializeField] GameManager m_gameManager;
+	[SerializeField] private GameManager m_gameManager;
     [SerializeField] private TextMeshProUGUI m_timerText;
+ 
+ 
+
     public float m_timeRemaining;
 
 	public float m_levelTime;
@@ -18,6 +21,7 @@ public class Timer : MonoBehaviour {
 		m_time = (int)Time.time;
 		m_tick = m_timerInterval;
 	}
+ 
 
 	private void Update() {
 		m_time = (int)Time.time;
@@ -26,16 +30,21 @@ public class Timer : MonoBehaviour {
 			m_tick = m_time + m_timerInterval;
 			TimerExecute();
 		}
+ 
     }
 
 	private void TimerExecute() {
 		m_gameManager.GetComponent<GameManager>().m_timer = m_timeRemaining;
 		if(m_timeRemaining > 0.0f)
 			m_timeRemaining--;
+ 
+
 		else if(m_timeRemaining == 0.0f) {
 			m_gameManager.DeathPlayer();
 			m_timeRemaining = m_levelTime;
 			Debug.Log(m_timeRemaining);
 		}
+ 
+
 	}
 }
