@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     public void DeathPlayer() {
 		if(m_bigMario) {
 			MarioMovement marioMovement = GameObject.Find("Mario").GetComponent<MarioMovement>();
-			marioMovement.setSmallMario();
+			marioMovement.SetSmallMario();
 		}else {
 			Reset();
 			m_health--;
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
 		flagDown.m_playerControlsDisabled = false;
 
 		// Reset Mario
-		m_player.GetComponent<MarioMovement>().setSmallMario();
+		m_player.GetComponent<MarioMovement>().SetSmallMario();
 		m_player.GetComponent<MarioMovement>().m_moveSpeed = 20.0f;
 		m_player.transform.position = new Vector3(2.0f, 1.05f, 0.0f);
         m_cam.transform.position = new Vector3(2.0f, 13.0f, -10.0f);

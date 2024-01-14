@@ -25,7 +25,7 @@ public class Block : MonoBehaviour {
                 }else if (m_bonus == 3) { //Block champi
                     m_bonus = 0;
 					m_marioMovement = collision.gameObject.GetComponent<MarioMovement>();
-					m_marioMovement.setBigMario();
+					m_marioMovement.SetBigMario();
                 }
             }
         }

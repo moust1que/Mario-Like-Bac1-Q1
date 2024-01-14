@@ -97,7 +97,7 @@ public class MarioMovement : MonoBehaviour {
         m_hitRight = m_rigidbody.Raycast(Vector3.right, horizontalDistance, horizontalRadius);
 	}
 
-	public void setBigMario() {
+	public void SetBigMario() {
 		gameObject.transform.GetChild(0).gameObject.SetActive(false);
 		gameObject.transform.GetChild(1).gameObject.SetActive(true);
 		gameObject.GetComponent<CapsuleCollider>().height = 3.0f;
@@ -105,7 +105,7 @@ public class MarioMovement : MonoBehaviour {
 		m_gameManager.m_bigMario = true;
 	}
 
-	public void setSmallMario() {
+	public void SetSmallMario() {
 		gameObject.transform.GetChild(0).gameObject.SetActive(true);
 		gameObject.transform.GetChild(1).gameObject.SetActive(false);
 		gameObject.GetComponent<CapsuleCollider>().height = 2.0f;
