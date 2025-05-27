@@ -5,7 +5,7 @@
 
 ---
 
-## 🇫🇷 Français
+## Français 🇫🇷
 
 > Un jeu de plateforme 2D inspiré de Mario Bros, développé en C# avec Unity dans le cadre du premier quadrimestre du Bac1 à la Haute École Albert Jacquard.
 
@@ -82,7 +82,7 @@
 
 ---
 
-## 🇬🇧 English
+## English 🇬🇧
 
 > A 2D platformer game inspired by Mario Bros, developed in C# with Unity as part of the first semester of the first year Bachelor's program at Haute École Albert Jacquard (HEAJ) college.
 
