@@ -1,7 +1,7 @@
 # 🎮 Mario-Like Bac1 Q1
 
-🇫🇷 [Version française](#français)  
-🇬🇧 [English version](#english)
+🇫🇷 [Version française](#français-)  
+🇬🇧 [English version](#english-)
 
 ---
 
